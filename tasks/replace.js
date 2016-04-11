@@ -1,6 +1,6 @@
 /*
- * grunt-Replacebyrefs
- * https://github.com/Laisly/Replacebyrefs
+ * grunt-replace-pas
+ * https://github.com/Laisly/grunt-replace-pas
  *
  * Copyright (c) 2016 liuyongming
  * Licensed under the MIT license.
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
   // inlineCSS template
   var inlineCSSTemplate = '<style><%= dest %></style>';
 
-  grunt.registerMultiTask('replacebyrefs', 'replace all by template refs', function() {
+  grunt.registerMultiTask('replace', 'replace all by template', function() {
     var options = this.options({
       pkg: {},
       includes: {}

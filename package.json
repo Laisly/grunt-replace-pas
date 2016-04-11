@@ -1,7 +1,7 @@
 {
   "name": "grunt-replace-pas",
   "description": "replace all by template",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/Laisly/grunt-replace-pas",
   "author": {
     "name": "liuyongming",
