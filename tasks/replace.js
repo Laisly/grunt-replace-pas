@@ -129,10 +129,19 @@ module.exports = function(grunt) {
         // write the contents to destination
         //grunt.log.warn('content ' + content);
         //grunt.log.warn('file.dest ' + file.dest);
-        filepath = filepath.match(/[^\/]*$/)[0];//移除目录级别，只保留文件名和后缀
-        filepath = filepath.replace(".","_publish.");//将原有的test.html替换为test_publish.html
-        grunt.file.write(file.dest+filepath, content);
-        grunt.log.writeln('成功写入文件' + file.dest+filepath);
+        var fileName = filepath.match(/[^\/]*$/)[0];//移除目录级别，只保留文件名和后缀
+        if(typeof(file.namesuffix)!="undefined")
+        {
+            fileName = fileName.replace(".",file.namesuffix+".");
+        }
+        else
+        {
+            fileName = fileName.replace(".","_publish.");//将原有的test.html替换为test_publish.html
+        }
+
+
+        grunt.file.write(file.dest+fileName, content);
+        grunt.log.writeln('成功写入文件' + file.dest+fileName);
 
       });
       //grunt.log.warn('content' + content);
