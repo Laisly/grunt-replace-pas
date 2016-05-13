@@ -8,30 +8,66 @@ This plugin requires Grunt `~0.4.5`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-Replacebyrefs --save-dev
+npm install grunt-replace-pas --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-Replacebyrefs');
+grunt.loadNpmTasks('grunt-replace-pas');
 ```
 
-## The "Replacebyrefs" task
+## The "replace" task
 
 ### Overview
-In your project's Gruntfile, add a section named `Replacebyrefs` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `replace` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  Replacebyrefs: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+ replace: {
+            html: {
+                /** @required  - string including grunt glob variables */
+                //src: '*.html',
+                src: ['index.html','modifyPwd.html'],
+                /** @optional  - string directory name*/
+                dest: './',
+                /** @optional  - references external files to be included */
+                /*includes: {
+                    analytics: './ga.inc' // in this case it's google analytics (see sample below)
+                },*/
+                /** any other parameter included on the options will be passed for template evaluation */
+                options: {
+                  buildNumber: buildVersion,
+                  type:"html"
+                }
+            },
+            config: {
+                src: ['js/config.js'],
+                dest: 'build/js/',
+                namesuffix: "",//不加后缀
+                options: {
+                  buildNumber: buildVersion,
+                  type:"javascript"
+                }
+            },
+            javascript: {
+                src: ['js/index.js'],
+                dest: 'js/',
+                namesuffix: javascript_namesuffix,
+                options: {
+                  buildNumber: buildVersion,
+                  type:"javascript"
+                }
+            },
+            css: {
+                src: ['css/main.css','../css/comm.css'],
+                dest: '.build/',
+                options: {
+                  buildNumber: buildVersion,
+                  type:"css"
+                }
+            }
+        },
 });
 ```
 
@@ -52,16 +88,52 @@ A string value that is used to do something else with whatever else.
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
 
-```js
 grunt.initConfig({
-  Replacebyrefs: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+  replace: {
+            html: {
+                /** @required  - string including grunt glob variables */
+                //src: '*.html',
+                src: ['index.html','modifyPwd.html'],
+                /** @optional  - string directory name*/
+                dest: './',
+                /** @optional  - references external files to be included */
+                /*includes: {
+                    analytics: './ga.inc' // in this case it's google analytics (see sample below)
+                },*/
+                /** any other parameter included on the options will be passed for template evaluation */
+                options: {
+                  buildNumber: buildVersion,
+                  type:"html"
+                }
+            },
+            config: {
+                src: ['js/config.js'],
+                dest: 'build/js/',
+                namesuffix: "",//不加后缀
+                options: {
+                  buildNumber: buildVersion,
+                  type:"javascript"
+                }
+            },
+            javascript: {
+                src: ['js/index.js'],
+                dest: 'js/',
+                namesuffix: javascript_namesuffix,
+                options: {
+                  buildNumber: buildVersion,
+                  type:"javascript"
+                }
+            },
+            css: {
+                src: ['css/main.css','../css/comm.css'],
+                dest: '.build/',
+                options: {
+                  buildNumber: buildVersion,
+                  type:"css"
+                }
+            }
+        },
 });
 ```
 
