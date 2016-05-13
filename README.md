@@ -1,4 +1,4 @@
-# grunt-Replacebyrefs
+# grunt-replace-pas
 
 > replace all by template refs
 
